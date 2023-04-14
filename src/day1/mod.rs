@@ -64,13 +64,13 @@ fn load_elves(lines: &Vec<String>) -> BinaryHeap<Elf> {
     elves
 }
 
-pub fn part1(lines: &Vec<String>) -> u64 {
+fn part1(lines: &Vec<String>) -> u64 {
     let elves = load_elves(lines);
 
     elves.peek().unwrap().total_calories
 }
 
-pub fn part2(lines: &Vec<String>) -> u64 {
+fn part2(lines: &Vec<String>) -> u64 {
     let mut elves = load_elves(lines);
     
     let mut top_3: u64 = 0;

@@ -5,7 +5,7 @@ pub fn run(lines: Vec<String>) {
     dbg!(part2(&lines));
 }
 
-pub fn part1(lines: &Vec<String>) -> u32 {
+fn part1(lines: &Vec<String>) -> u32 {
     let get_point = |c| match c {
         'X' => 1, // rock
         'Y' => 2, // paper
@@ -31,7 +31,7 @@ pub fn part1(lines: &Vec<String>) -> u32 {
     score
 }
 
-pub fn part2(lines: &Vec<String>) -> u32 {
+fn part2(lines: &Vec<String>) -> u32 {
     let get_match_point = |c| match c {
         'X' => 0, // lose
         'Y' => 3, // draw
