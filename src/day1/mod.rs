@@ -1,5 +1,10 @@
 #![allow(unused)]
 
+pub fn run(lines: Vec<String>) {
+    dbg!(part1(&lines));
+    dbg!(part2(&lines));
+}
+
 use std::collections::BinaryHeap;
 use std::cmp::Ordering;
 
@@ -36,7 +41,7 @@ impl PartialOrd for Elf {
     }
 }
 
-pub fn run(lines: Vec<String>) {
+fn load_elves(lines: &Vec<String>) -> BinaryHeap<Elf> {
     let mut elves: BinaryHeap<Elf> = BinaryHeap::new();
     let mut cur_elf: Elf = Elf::new();
 
@@ -56,13 +61,22 @@ pub fn run(lines: Vec<String>) {
         elves.push(cur_elf.clone());
     }
 
-    println!("Elves count: {}", elves.len());
-    println!("Elf with highest calories: {:?}", elves.peek().unwrap().total_calories);
+    elves
+}
+
+pub fn part1(lines: &Vec<String>) -> u64 {
+    let elves = load_elves(lines);
+
+    elves.peek().unwrap().total_calories
+}
+
+pub fn part2(lines: &Vec<String>) -> u64 {
+    let mut elves = load_elves(lines);
     
     let mut top_3: u64 = 0;
     for _ in 0..3 {
         top_3 += elves.pop().unwrap().total_calories;
     }
-    
-    println!("Elves top3 calories total: {}", top_3);
+
+    top_3
 }
