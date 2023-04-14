@@ -1,5 +1,3 @@
-use std::fs::File;
-use std::io::{BufRead, BufReader};
 use std::collections::BinaryHeap;
 use std::cmp::Ordering;
 
@@ -36,29 +34,19 @@ impl PartialOrd for Elf {
     }
 }
 
-pub fn run() {
-    const INPUT_FILE: &str = "input/day1.txt";
-
-    let file = File::open(INPUT_FILE).unwrap();
-    let reader = BufReader::new(file);
-
+pub fn run(lines: &Vec<String>) {
     let mut elves: BinaryHeap<Elf> = BinaryHeap::new();
     let mut cur_elf: Elf = Elf::new();
 
-    for line in reader.lines() {
-        match line {
-            Ok(text) => {
-                if text.is_empty() {
-                    if cur_elf.has_food() {
-                        elves.push(cur_elf.clone());
-                    }
-                    cur_elf = Elf::new()
-                } else {
-                    let food = text.parse::<u32>().unwrap();
-                    cur_elf.add_food(food);
-                }
-            },
-            Err(_) => panic!("Unable to read file"),
+    for text in lines {
+        if text.is_empty() {
+            if cur_elf.has_food() {
+                elves.push(cur_elf.clone());
+            }
+            cur_elf = Elf::new()
+        } else {
+            let food = text.parse::<u32>().unwrap();
+            cur_elf.add_food(food);
         }
     }
 
