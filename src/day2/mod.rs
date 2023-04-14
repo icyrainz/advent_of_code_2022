@@ -1,4 +1,6 @@
-pub fn run(lines: &Vec<String>) {
+#![allow(unused)]
+
+pub fn run(lines: Vec<String>) {
     
     let get_point = |c| match c {
         'X' => 1,
@@ -7,7 +9,7 @@ pub fn run(lines: &Vec<String>) {
         _ => panic!("Not supported action!"),
     };
     
-    let compare = |(left, right): (&char, &char)| match (*left, *right) {
+    let compare = |(left, right): (char, char)| match (left, right) {
         ('A', 'X') | ('B', 'Y') | ('C', 'Z') => 3,
         ('A', 'Y') | ('B', 'Z') | ('C', 'X') => 6, 
         ('A', 'Z') | ('B', 'X') | ('C', 'Y') => 0,
@@ -19,7 +21,7 @@ pub fn run(lines: &Vec<String>) {
         let first_action = line.chars().nth(0).unwrap();
         let second_action = line.chars().nth(2).unwrap();
         
-        score += compare((&first_action, &second_action)) + get_point(second_action);
+        score += compare((first_action, second_action)) + get_point(second_action);
     }
     println!("score: {}", score);
 }

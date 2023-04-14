@@ -1,3 +1,5 @@
+#![allow(unused)]
+
 use std::collections::BinaryHeap;
 use std::cmp::Ordering;
 
@@ -34,7 +36,7 @@ impl PartialOrd for Elf {
     }
 }
 
-pub fn run(lines: &Vec<String>) {
+pub fn run(lines: Vec<String>) {
     let mut elves: BinaryHeap<Elf> = BinaryHeap::new();
     let mut cur_elf: Elf = Elf::new();
 

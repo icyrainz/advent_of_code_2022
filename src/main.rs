@@ -5,8 +5,8 @@ mod day1;
 mod day2;
 
 fn main() {
-//    day1::run(&read_file("day1"));
-    day2::run(&read_file("day2"));
+//    day1::run(read_file("day1"));
+    day2::run(read_file("day2"));
 }
 
 fn read_file(path: &str) -> Vec<String> {
