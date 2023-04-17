@@ -86,6 +86,17 @@ fn move_rope(actions: &[String], tail_count: usize) -> u32 {
     visit.len() as u32
 }
 
+fn display(n: u32, set: &HashMap<(u32, u32), String>) {
+    for i in 0..n {
+        for j in 0..n {
+            let c: String = set.get(&(i as u32, j as u32)).unwrap_or(&String::from(".")).clone();
+            print!("{c}");
+        }
+        println!();
+    }
+    println!();
+}
+
 fn visual(n: u32, knots: &Vec<Cell>) {
 
     let mut set: HashMap<(u32, u32), String> = HashMap::new();
@@ -96,14 +107,7 @@ fn visual(n: u32, knots: &Vec<Cell>) {
         set.insert((x, y), c);
     }
 
-    for i in 0..n {
-        for j in 0..n {
-            let c: String = set.get(&(i as u32, j as u32)).unwrap_or(&String::from(".")).clone();
-            print!("{c}");
-        }
-        println!();
-    }
-    println!();
+    display(n, &set);
 }
 
 fn visual_visit(n: u32, visit: &HashSet<(i32, i32)>) {
@@ -115,14 +119,7 @@ fn visual_visit(n: u32, visit: &HashSet<(i32, i32)>) {
         set.insert((x, y), "x".to_string());
     }
 
-    for i in 0..n {
-        for j in 0..n {
-            let c: String = set.get(&(i as u32, j as u32)).unwrap_or(&String::from(".")).clone();
-            print!("{c}");
-        }
-        println!();
-    }
-    println!();
+    display(n, &set);
 }
 
 #[test]
