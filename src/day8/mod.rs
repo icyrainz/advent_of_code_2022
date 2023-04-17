@@ -15,8 +15,8 @@ fn test_part1() {
 33549
 35390"
         .lines()
-        .map(|line| line.to_string())
-        .collect()));
+        .map(|x| x.to_string())
+        .collect::<Vec<_>>()));
 }
 
 fn part1(lines: &[String]) -> usize {
@@ -64,21 +64,19 @@ fn visible_trees_count(grid: &[Vec<usize>]) -> usize {
         }
     }
 
-    visibles.iter().fold(0, |acc, row| {
-        acc + row.iter().filter(|&&x| x).count()
-    })
+    visibles.iter().map(| row| row.iter().filter(|&&x| x).count()).sum()
 }
 
 #[test]
 fn test_part2() {
-    part2(&"30373
+    assert_eq!(8, part2(&"30373
 25512
 65332
 33549
 35390"
         .lines()
-        .map(|line| line.to_string())
-        .collect());
+        .map(|x| x.to_string())
+        .collect::<Vec<_>>()));
 }
 
 fn part2(lines: &[String]) -> usize {
@@ -118,7 +116,7 @@ fn scenic_score(grid: &[Vec<usize>]) -> usize {
     scores
         .iter()
         .flat_map(|row| row.iter())
-        .max_by_key(|&&score| score)
+        .max()
         .unwrap()
         .clone()
 }
