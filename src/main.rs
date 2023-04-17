@@ -12,10 +12,9 @@ mod day5;
 mod day6;
 mod day7;
 mod day8;
+mod day9;
 
-fn main() {
-    day8::run(&data("day8"));
-}
+fn main() { }
 
 
 fn data(path: &str) -> Vec<String> {
